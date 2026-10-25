@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090611">
+<title>OMEGA AI — Ultimate Minecraft & Discord AI</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #090611;
+  --panel: #151020;
+  --purple: #9b5cff;
+  --text: #f7f2ff;
+  --muted: #a69bb8;
+  --border: #30213f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  background: #0d0815ed;
+  backdrop-filter: blur(16px);
+  z-index: 2;
+}
+.logo { font-size: 21px; font-weight: 900; letter-spacing: 1px; }
+.logo span { color: var(--purple); }
+.status { color: #c4a5ff; font-size: 12px; }
+.layout { display: flex; min-height: calc(100vh - 70px); }
+nav {
+  width: 215px;
+  flex-shrink: 0;
+  padding: 18px 12px;
+  border-right: 1px solid var(--border);
+}
+nav button {
+  display: block;
+  width: 100%;
+  margin: 4px 0;
+  text-align: left;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid transparent;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+nav button.active, nav button:hover {
+  background: #28183b;
+  border-color: #56377a;
+  color: white;
+}
+main { flex: 1; padding: 26px; min-width: 0; }
+h1 { font-size: clamp(25px, 5vw, 38px); margin: 8px 0; }
+p { color: var(--muted); line-height: 1.6; }
+.eyebrow { color: var(--purple); font-weight: 700; font-size: 12px; letter-spacing: 2px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 15px;
+  margin-top: 24px;
+}
+.card {
+  background: linear-gradient(145deg, #191226, #100b19);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  min-width: 0;
+}
+.card h3 { margin: 8px 0; }
+.icon { font-size: 27px; }
+.pill {
+  display: inline-block;
+  border: 1px solid #604087;
+  background: #29183b;
+  border-radius: 20px;
+  padding: 5px 9px;
+  color: #d6baff;
+  font-size: 11px;
+}
+.primary {
+  background: var(--purple);
+  color: #10091a;
+  font-weight: 800;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.secondary {
+  background: #21172e;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  cursor: pointer;
+}
+input, textarea, select {
+  width: 100%;
+  background: #0d0914;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px;
+  font: inherit;
+}
+textarea { resize: vertical; min-height: 90px; }
+.field { display: grid; gap: 8px; margin: 14px 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.chatlog {
+  height: 230px;
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 15px 0;
+}
+.message { margin: 8px 0; padding: 10px; background: #1a1226; border-radius: 9px; }
+.message b { color: #c8a6ff; }
+.page { display: none; }
+.page.active { display: block; }
+footer { padding: 22px; color: var(--muted); font-size: 12px; text-align: center; }
+@media(max-width:650px) {
+  .layout { display: block; }
+  nav {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 8px;
+    gap: 5px;
+  }
+  nav button { width: auto; white-space: nowrap; padding: 10px 12px; }
+  main { padding: 19px 14px; }
+  header { padding: 15px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Ω OMEGA<span> AI</span></div>
+  <div class="status">● DASHBOARD</div>
+</header>
+
+<div class="layout">
+<nav id="navigation">
+  <button class="active" data-page="overview">⌂ Overview</button>
+  <button data-page="assistant">✦ AI Assistant</button>
+  <button data-page="discord">◉ Discord Bot</button>
+  <button data-page="minecraft">▣ Minecraft</button>
+  <button data-page="bridge">⇄ Discord Bridge</button>
+  <button data-page="builder">⚙ Bot Builder</button>
+  <button data-page="settings">☷ Settings</button>
+</nav>
+
+<main>
+<section class="page active" id="overview">
+  <div class="eyebrow">YOUR ALL-IN-ONE PLATFORM</div>
+  <h1>Welcome to OMEGA AI.</h1>
+  <p>One dashboard for Minecraft management, Discord automation, and AI-powered tools.</p>
+  <div class="actions">
+    <button class="primary" data-go="assistant">Open AI Assistant ↗</button>
+    <button class="secondary" data-go="discord">Configure Discord</button>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="icon">✦</div><h3>AI Assistant</h3><p>Chat interface ready for an AI provider connection.</p><span class="pill">UI READY</span></div>
+    <div class="card"><div class="icon">◉</div><h3>Discord Bot</h3><p>Prepare moderation, slash commands, tickets, and automation.</p><span class="pill">NOT CONNECTED</span></div>
+    <div class="card"><div class="icon">▣</div><h3>Minecraft</h3><p>Plan server tools, player management, and server status.</p><span class="pill">NOT CONNECTED</span></div>
+    <div class="card"><div class="icon">⇄</div><h3>Server Bridge</h3><p>Plan chat synchronization between Minecraft and Discord.</p><span class="pill">NOT CONNECTED</span></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>Platform status</h3>
+    <p>This is the frontend starter. Live AI, Discord commands, and Minecraft server actions require secure backend services and credentials.</p>
+  </div>
+</section>
+
+<section class="page" id="assistant">
+  <div class="eyebrow">OMEGA INTELLIGENCE</div>
+  <h1>AI Assistant</h1>
+  <p>The chat interface is ready. A backend AI connection is not configured yet.</p>
+  <div class="chatlog" id="chatlog"><div class="message"><b>OMEGA:</b> Welcome! The interface is running. Connect an AI backend to enable real AI responses.</div></div>
+  <form id="chatform">
+    <div class="field"><label for="prompt">Your message</label><textarea id="prompt" required placeholder="Ask OMEGA something..."></textarea></div>
+    <button class="primary">Send message</button>
+  </form>
+</section>
+
+<section class="page" id="discord">
+  <div class="eyebrow">COMMUNITY AUTOMATION</div>
+  <h1>Discord Bot</h1>
+  <p>Configure your future Discord bot. Never place your bot token in frontend code.</p>
+  <div class="grid">
+    <div class="card"><h3>🛡️ Moderation</h3><p>Ban, kick, timeout, warnings, and audit logs.</p></div>
+    <div class="card"><h3>🎫 Tickets</h3><p>Support panels, private channels, and staff tools.</p></div>
+    <div class="card"><h3>⚡ Slash commands</h3><p>Custom commands, server info, and utility tools.</p></div>
+    <div class="card"><h3>👋 Welcome system</h3><p>Welcome messages, role assignment, and logs.</p></div>
+  </div>
+  <div class="card" style="margin-top:16px"><span class="pill">BACKEND REQUIRED</span><p>These are planned modules, not connected Discord actions yet.</p></div>
+</section>
+
+<section class="page" id="minecraft">
+  <div class="eyebrow">SERVER CONTROL</div>
+  <h1>Minecraft Hub</h1>
+  <p>Plan tools for Java and Bedrock servers.</p>
+  <div class="grid">
+    <div class="card"><h3>📡 Server status</h3><p id="mcstatus">Status unavailable — no server API configured.</p></div>
+    <div class="card"><h3>👥 Player tools</h3><p>Player lookup and management require server permissions and a backend.</p></div>
+    <div class="card"><h3>🔌 Plugin integration</h3><p>Future Paper plugin integration for server events and commands.</p></div>
+    <div class="card"><h3>💬 Chat bridge</h3><p>Plan synchronized Minecraft and Discord messages.</p></div>
+  </div>
+</section>
+
+<section class="page" id="bridge">
+  <div class="eyebrow">CROSS-PLATFORM</div>
+  <h1>Discord Bridge</h1>
+  <p>Plan the connection between your Minecraft server and Discord.</p>
+  <div class="card">
+    <div class="field"><label for="serverip">Minecraft server address</label><input id="serverip" placeholder="play.example.net"></div>
+    <div class="field"><label for="channelid">Discord channel ID</label><input id="channelid" placeholder="Discord channel ID"></div>
+    <button class="primary" id="savebridge">Save local settings</button>
+    <p id="bridgefeedback">Settings are saved only in this browser; no bridge is active.</p>
+  </div>
+</section>
+
+<section class="page" id="builder">
+  <div class="eyebrow">CUSTOM AUTOMATION</div>
+  <h1>Bot Builder</h1>
+  <p>Describe the bot you want to plan.</p>
+  <div class="card">
+    <div class="field"><label for="botname">Bot name</label><input id="botname" placeholder="OMEGA Guardian"></div>
+    <div class="field"><label for="bottype">Platform</label><select id="bottype"><option>Discord</option><option>Minecraft Java</option><option>Minecraft Bedrock</option><option>Discord + Minecraft</option></select></div>
+    <div class="field"><label for="botfeatures">Features</label><textarea id="botfeatures" placeholder="Moderation, tickets, player linking..."></textarea></div>
+    <button class="primary" id="buildbot">Create plan</button>
+    <div id="botresult" class="message" hidden></div>
+  </div>
+</section>
+
+<section class="page" id="settings">
+  <div class="eyebrow">PREFERENCES</div>
+  <h1>Settings</h1>
+  <div class="card">
+    <h3>Appearance</h3>
+    <p>OMEGA AI dark-purple theme</p>
+    <div class="field"><label for="accent">Accent color</label><select id="accent"><option value="#9b5cff">Purple</option><option value="#2389ff">Blue</option><option value="#00c995">Green</option><option value="#ff4da6">Pink</option></select></div>
+    <button class="primary" id="saveaccent">Apply accent</button>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>Security</h3><p>Store API keys and bot tokens on a secure backend, never in browser JavaScript.</p></div>
+</section>
+</main>
+</div>
+<footer>OMEGA AI · Minecraft + Discord · Frontend starter</footer>
+
+<script>
+const pages = document.querySelectorAll('.page');
+const navButtons = document.querySelectorAll('nav button');
+
+function showPage(name) {
+  pages.forEach(p => p.classList.toggle('active', p.id === name));
+  navButtons.forEach(b => b.classList.toggle('active', b.dataset.page === name));
+}
+navButtons.forEach(b => b.addEventListener('click', () => showPage(b.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => showPage(b.dataset.go)));
+
+document.getElementById('chatform').addEventListener('submit', e => {
+  e.preventDefault();
+  const input = document.getElementById('prompt');
+  const log = document.getElementById('chatlog');
+  const msg = document.createElement('div');
+  msg.className = 'message';
+  const label = document.createElement('b');
+  label.textContent = 'You: ';
+  msg.append(label, document.createTextNode(input.value));
+  log.append(msg);
+  const reply = document.createElement('div');
+  reply.className = 'message';
+  reply.textContent = 'OMEGA: AI is not connected yet. A secure backend must be configured to generate real answers.';
+  log.append(reply);
+  input.value = '';
+  log.scrollTop = log.scrollHeight;
+});
+
+document.getElementById('savebridge').addEventListener('click', () => {
+  const settings = {
+    server: document.getElementById('serverip').value,
+    channel: document.getElementById('channelid').value
+  };
+  try {
+    localStorage.setItem('omegaBridgeSettings', JSON.stringify(settings));
+    document.getElementById('bridgefeedback').textContent = 'Saved in this browser only. No server connection has been made.';
+  } catch {
+    document.getElementById('bridgefeedback').textContent = 'Browser storage unavailable; settings were not saved.';
+  }
+});
+
+document.getElementById('buildbot').addEventListener('click', () => {
+  const name = document.getElementById('botname').value.trim() || 'Unnamed bot';
+  const platform = document.getElementById('bottype').value;
+  const features = document.getElementById('botfeatures').value.trim() || 'Features not specified';
+  const result = document.getElementById('botresult');
+  result.hidden = false;
+  result.textContent = 'Bot plan: ' + name + ' | Platform: ' + platform + ' | Features: ' + features + '. This is a plan only; no bot has been deployed.';
+});
+
+document.getElementById('saveaccent').addEventListener('click', () => {
+  document.documentElement.style.setProperty('--purple', document.getElementById('accent').value);
+});
+</script>
+</body>
+</html>
